@@ -1,5 +1,7 @@
 import Home from "views/Home";
 import Page from "views/Page";
+import SagaTest from "../views/sagaTestCom/sagaTestView/sagaTest.com";
+import LayoutCom from "../publicCom/LayoutCom/Layout";
 
 // export const routeConfig = [
 //     {
@@ -46,16 +48,22 @@ import Page from "views/Page";
 const routerConfig = [
     {
         path: '/',
-        exact: true,
-        component: Home,
-    }, {
-        path: '/page',
         exact: false,
-        component: Page,
-    }, {
-        path: '/home',
-        exact: false,
-        component: Home,
+        component: LayoutCom,
+        children: [{
+            path: '/page',
+            exact: false,
+            component: Page,
+        }, {
+            path: '/home',
+            exact: false,
+            component: Home,
+        }, {
+            path: '/saga',
+            exact: false,
+            component: SagaTest,
+        }]
+        
     }
 ]
 

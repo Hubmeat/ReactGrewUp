@@ -15,8 +15,6 @@ class Page extends Component {
         })
     }
     render() {
-        console.log('WTF this.props', this.props)
-        console.log('store', store)
         return (
             <div>
                 <div>当前计数为{this.props.counter.count}</div>
@@ -36,12 +34,11 @@ class Page extends Component {
 const storeState = (state) => {
     console.log('getsTata', state)
     return {
-        counter: state.counter
+        counter: state.counterReducer
     }
 }
 
 const mapDispatchToProps = (dispatch) => {
-    console.log('dispatch', dispatch)
     return {
         a: () => {
             dispatch(increment())

@@ -1,9 +1,14 @@
 import React from 'react';
 import ReactDom from 'react-dom';
+import "babel-polyfill";
 import { AppContainer } from 'react-hot-loader'; // 引入 react hot module
 import RouterModule from 'router/router';
 import {Provider} from 'react-redux';
-import store from './redux/store';
+import configureStore from './redux/store';
+// import store from './redux/store';
+
+const store = configureStore();
+
 
 function renderWithHotReload(RootElement) {
     ReactDom.render(

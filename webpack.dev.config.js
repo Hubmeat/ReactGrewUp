@@ -1,4 +1,5 @@
 const path = require('path');
+var babelpolyfill = require("babel-polyfill");
 
 module.exports = {
     // 入口文件
@@ -29,15 +30,49 @@ module.exports = {
                 test: /\.(js|jsx)$/,//一个匹配loaders所处理的文件的拓展名的正则表达式，这里用来匹配js和jsx文件（必须）
                 exclude: /node_modules/,//屏蔽不需要处理的文件（文件夹）（可选）
                 loader: 'babel-loader'
+            },{
+                test: /\.css$/,
+                exclude: /\.useable\.css$/,
+                loader: "style-loader!css-loader"
+            }, {
+                test: /\.useable\.css$/,
+                exclude: /node_modules/,
+                loader: "style-loader/useable!css-loader"
+            }, {
+                test: /\.less?$/,
+                loaders: [
+                    'style-loader',
+                    'css-loader',
+                    'less-loader?{"sourceMap":false}'
+                  ],
+                exclude: /\.useable\.less$/
+            }, {
+                test: /\.useable\.less$/,
+                exclude: /node_modules/,
+                loader: "style-loader/useable!css-loader!less-loader"
+            }, {
+                test: /\.(png|jpg|gif|JPG|GIF|PNG|BMP|bmp|JPEG|jpeg)$/,
+                exclude:/node_modules/,
+                use: [{
+                    loader: 'url-loader',
+                    options: {
+                        limit: 8192,
+                        outputPath: 'images/'
+                    }
+                }]
+            }, {
+                test: /\.(eot|woff|ttf|woff2|svg)$/,
+                use: 'url-loader'
             }
         ]
     },
     devServer: {        
-        port: 8888,
+        port: 9090,
         contentBase: path.join(__dirname, './dist'),
         historyApiFallback: true,
         // host: '0.0.0.0'
     },
+    devtool: 'inline-source-map',
     resolve: {
         extensions: ['.js', '.jsx', '.less', '.scss', '.css'], //后缀名自动补全
         alias: {

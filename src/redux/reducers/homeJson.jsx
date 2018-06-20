@@ -6,7 +6,6 @@ const initState = {
         "description": 'default'
     },
     isLoading: false,
-    
     errorMsg: ''
 }
 

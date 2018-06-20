@@ -25,10 +25,11 @@ class Home extends Component {
                 this is home~s<br/>
                 当前计数：{this.state.count}<br/>
                 <button onClick={() => this.handerClick()}>自增</button>
-                <button onClick={() => this.props.getUserInfo()}>获取数据</button>
+                <button onClick={() => this.props.getUserInfo().then()}>获取数据</button>
             </div>
         )
     }
 }
 
 export default connect((state) => ({homeInfo: state }), { getUserInfo})(Home)
+// export default Home;

@@ -27,7 +27,7 @@ export function getUserInfo() {
     return function (dispatch) {
         dispatch(getUserInfoActions());
 
-        return axios.get('./assets/data.json')
+        return axios.get('./data.json')
             .then( res => {
                 console.log('ressssss', res)
                 res.json()})
