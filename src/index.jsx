@@ -26,7 +26,7 @@ renderWithHotReload(RouterModule);
 
 if (module.hot) {
     module.hot.accept('./router/router', () => {
-        const RouterModule = require('./router/router').default;
+        // const RouterModule = require('./router/router').default;
         renderWithHotReload(RouterModule)
     });
 }
