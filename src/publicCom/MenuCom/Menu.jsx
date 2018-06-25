@@ -1,38 +1,74 @@
 import React, { Component } from 'react';
 import {Route, Switch, Link} from 'react-router-dom';
 import { Menu, Icon } from 'antd';
+import { MenuCreator } from '../routerCreator/routerCreator';
 const { SubMenu } = Menu;
 
 class MenuCom extends Component {
     constructor(props) {
-        super(props)
+        super(props);
+        this.state = {
+            Menus: [
+                {
+                    url: '',
+                    name: '事件分析',
+                    key: 'user',
+                    icon: "user",
+                    children: [
+                        {
+                            url: '/content',
+                            name: '首页',
+                            key: 'first',
+                            children: []
+                        }, {
+                            url: '/content/page',
+                            key: 'page',
+                            name: 'page页',
+                            children: []   
+                        }, {
+                            url: '/content/home',
+                            name: 'home',
+                            children: []   
+                        }, {
+                            url: '/content/saga',
+                            key: 'saga',
+                            name: 'sagaTest',
+                            children: []  
+                        }, {
+                            url: '/content/chart',
+                            key: 'chart',
+                            name: '图表',
+                            children: []
+                        }
+                    ]
+                }, {
+                    url: '',
+                    name: '报表',
+                    key: 'laptop',
+                    icon: "laptop",
+                    children: []
+                }, {
+                    url: '',
+                    name: 'echarts图表',
+                    key: 'chart',
+                    icon: "notification",
+                    children: []
+                }
+            ]
+        }
     }
+
 
     render() {
         return (
             <Menu
             mode="inline"
             defaultSelectedKeys={['1']}
-            defaultOpenKeys={['sub1']}
+            defaultOpenKeys={['user']}
             style={{ height: '100%' }}>
-                <SubMenu key="sub1" title={<span><Icon type="user" />subnav 1</span>}>
-                    <Menu.Item key="1"><Link to='/'>首页</Link></Menu.Item>
-                    <Menu.Item key="2"><Link to='/page'>page</Link></Menu.Item>
-                    <Menu.Item key="3"><Link to='/home'>home</Link></Menu.Item>
-                    <Menu.Item key="4"><Link to='/saga'>sagaTest</Link></Menu.Item>
-                </SubMenu>
-                <SubMenu key="sub2" title={<span><Icon type="laptop" />subnav 2</span>}>
-                    <Menu.Item key="5">option5</Menu.Item>
-                    <Menu.Item key="6">option6</Menu.Item>
-                    <Menu.Item key="7">option7</Menu.Item>
-                    <Menu.Item key="8">option8</Menu.Item>
-                </SubMenu>
-                <SubMenu key="sub3" title={<span><Icon type="notification" />subnav 3</span>}>
-                    <Menu.Item key="9">option9</Menu.Item>
-                    <Menu.Item key="10">option10</Menu.Item>
-                    <Menu.Item key="11">option11</Menu.Item>
-                    <Menu.Item key="12">option12</Menu.Item>
-                </SubMenu>
+                {
+                    MenuCreator(this.state.Menus)
+                }
             </Menu>
         )
     }

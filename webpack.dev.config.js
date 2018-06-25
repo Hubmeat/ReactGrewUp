@@ -1,5 +1,6 @@
 const path = require('path');
 var babelpolyfill = require("babel-polyfill");
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     // 入口文件
@@ -68,9 +69,13 @@ module.exports = {
     },
     devServer: {        
         port: 9090,
-        contentBase: path.join(__dirname, './dist'),
         historyApiFallback: true,
-        // host: '0.0.0.0'
+        // contentBase: './content',        
+        // historyApiFallback:{
+        //     index:'./dist/index.html'
+        // },
+        // contentBase: path.join(__dirname, './content'),
+        host: '0.0.0.0'
     },
     devtool: 'inline-source-map',
     resolve: {
@@ -79,5 +84,11 @@ module.exports = {
             router: path.join(__dirname, 'src/router'),
             views: path.join(__dirname, 'src/views')
         }
-    }
+    },
+    plugins: [
+        new HtmlWebpackPlugin({
+            filename: 'index.html',
+            template: path.join(__dirname, 'src/index.html')
+        })
+    ]
 };

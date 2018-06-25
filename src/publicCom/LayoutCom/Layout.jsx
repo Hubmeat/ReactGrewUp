@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import {Route, Switch, Link} from 'react-router-dom';
+import { Link, Switch, Route, Redirect } from 'react-router-dom';
 import { Layout, Menu, Breadcrumb, Icon } from 'antd';
 import { MenuCom, HeaderCom, FooterCom } from '../../router/routerConfig';
-import RouteWithSubRoutes from '../../publicCom/routerCreator/routerCreator';
+import { RouteCreator } from '../../publicCom/routerCreator/routerCreator';
 const { SubMenu } = Menu;
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -35,11 +35,11 @@ class LayoutCom extends Component {
                             <MenuCom />
                         </Sider>
                         <Content style={{ padding: '0 24px' }}>
-                            {this.props.routes.map((route, i) => {
-                                return (
-                                    <RouteWithSubRoutes key={i} {...route} />
-                                )
-                            })}
+                            {
+                                RouteCreator(this.props.routes)
+                            }
+                            {console.log('content 路由', RouteCreator(this.props.routes))}
+                            <Route path="/" exact render={()=><Redirect to="/login"/>}/>
                         </Content>
                     </Layout>
                 </Content>

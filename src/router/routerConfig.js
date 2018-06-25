@@ -1,75 +1,56 @@
-import Home from "views/Home";
-import Page from "views/Page";
+import React, {Component} from 'react';
+import Bundle from '../publicCom/ModuleTools/Bundle.js';
+
+import Home from "../views/Home";
+import Page from "../views/Page";
 
 import MenuCom from '../publicCom/MenuCom/Menu';
 import HeaderCom from '../publicCom/HeaderCom/HeaderCom';
 import FooterCom from '../publicCom/FooterCom/FooterCom';
 
 import LayoutCom from "../publicCom/LayoutCom/Layout";
-import LoginCom from '../publicCom/LoginCom/Login';
+import  LoginCom from 'bundle-loader?lazy&name=Login../publicCom/LoginCom/Login';
+import ChartDemoCom from "../views/echartModule/chartDemoCom/chartDemoView/chartDemo";
+import SagaTest from '../views/sagaTestCom/sagaTestView/sagaTestCom';
 
+const Loading = () => ( <div>Loading...</div> );
 
-// export const routeConfig = [
-//     {
-//         path: '/index', 
-//         children: [
-//             { 
-//                 path: '/index/event',
-//                 component: createComponent(EventAnalysis),
-//                 children: [
-//                     { 
-//                         path: '/index/event/overview',
-//                         component: createComponent(OverViewCom)
-//                     },
-//                     { 
-//                         path: '/index/event/crditEvaluation',
-//                         component: createComponent(CreditEvaluationCom)
-//                     }
-//                 ]
-//             },
-//             { 
-//                 path: '/index/page1',
-//                 component: createComponent(Page1),
-//             },
-//             { 
-//                 path: '/index/counter',
-//                 component: createComponent(Counter),
-//             },
-//             { 
-//                 path: '/index/userInfo',
-//                 component: createComponent(userInfo),
-//             }
-//         ]
-//     }, {
-//         path: '/index',
-//         component: createComponent(LayoutCom),
-//     }, {
-//         path: '/login',
-//         component: createComponent(LoginCom),
-//     }, {
-//         path: '',
-//         component: createComponent(NotFoundCom),
-//     }
-// ]
+const createComponent = (component) => (props) => {
+    console.log('component', component)
+    return(
+    <Bundle load={component}>
+        {
+            (Component) => <Component {...props} /> 
+        }
+    </Bundle>
+)};
+
 const routerConfig = [
     {
-        path: '/',
-        exact: true,
+        path: '/content',
+        exact: false,
         component: LayoutCom,
         children: [{
-            path: '/page',
+            path: '/content/page',
             exact: true,
             component: Page,
         }, {
-            path: '/home',
+            path: '/content/home',
             exact: true,
             component: Home,
+        }, {
+            path: '/content/saga',
+            exact: true,
+            component: SagaTest,
+        }, {
+            path: '/content/chart',
+            exact: true,
+            component: ChartDemoCom,
         }]
-        
     }, {
         path: '/login',
         exact: false,
-        component: LoginCom
+        component: createComponent(LoginCom)
     }
 ]
 

@@ -54,7 +54,7 @@ class NormalLoginForm extends Component {
                         )}
                         <a className="login-form-forgot" href="">Forgot password</a>
                         <Button type="primary" htmlType="submit" className="login-form-button">
-                            <Link to='/' >登 录</Link>
+                            <Link to='/content' >登 录</Link>
                         </Button>
                         Or <a href="">register now!</a>
                     </FormItem>
@@ -66,4 +66,4 @@ class NormalLoginForm extends Component {
 
 const LoginCom = Form.create()(NormalLoginForm);
 
-export default LoginCom;
+export { LoginCom };
