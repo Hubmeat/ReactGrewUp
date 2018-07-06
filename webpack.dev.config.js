@@ -1,17 +1,21 @@
 const path = require('path');
+var webpack = require('webpack');
 var babelpolyfill = require("babel-polyfill");
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     // 入口文件
-    entry: [
-        'react-hot-loader/patch',
-        path.join(__dirname, 'src/index.jsx')
-    ],
+    entry: {
+        app: [
+            'react-hot-loader/patch',
+            path.join(__dirname, 'src/index.jsx')
+        ],
+        vendor: ['react', 'react-router-dom', 'redux', 'react-dom', 'react-redux']
+    },
     // 出口文件
     output: {
         path: path.join(__dirname, './dist'),
-        filename: 'bundle.js'
+        filename: '[name].[hash].js'
     },
     module: {
         rules: [
@@ -89,6 +93,9 @@ module.exports = {
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: path.join(__dirname, 'src/index.html')
+        }),
+        new webpack.optimize.CommonsChunkPlugin({
+            name: 'vendor'
         })
     ]
 };

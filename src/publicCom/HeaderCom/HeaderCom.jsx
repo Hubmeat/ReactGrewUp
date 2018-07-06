@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch, router } from 'react-router-dom';
+import { Route, Switch, router, Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Layout, Menu, Icon } from 'antd';
 import { Button } from 'antd/lib/radio';
@@ -39,7 +39,7 @@ class HeaderCom extends Component {
                     <Menu.Item key="3">nav 3</Menu.Item>
                 </Menu>
                 <div className="control" onClick={this.signOut.bind(this)} >
-                    <Icon className='outIcon'  type="poweroff" /> 登录
+                    <Icon className='outIcon'  type="poweroff" /> <Link to='/login' > 退出</Link>
                 </div>
             </Header>
         )

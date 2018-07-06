@@ -66,4 +66,4 @@ class NormalLoginForm extends Component {
 
 const LoginCom = Form.create()(NormalLoginForm);
 
-export { LoginCom };
+export default LoginCom;

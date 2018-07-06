@@ -1,13 +1,15 @@
 import React, {Component} from 'react'
 
 class Bundle extends Component {
-    state = {
-        // short for "module" but that's a keyword in js, so "mod"
-        mod: null
-    };
+    constructor(props, context) {
+        super(props, context);
+        this.state = {
+            // short for "module" but that's a keyword in js, so "mod"
+            mod: null
+        };
+    }
 
     componentWillMount() {
-        console.log('componentWillMount this.props', this.props)
         this.load(this.props)
     }
 
@@ -35,6 +37,12 @@ class Bundle extends Component {
                 mod: mod.default ? mod.default : mod
             })
         })
+        // props.load().then((mod) => {
+        //     this.setState({
+        //         // handle both es imports and cjs
+        //         mod: mod.default ? mod.default : mod
+        //     })
+        // })
     }
 
     render() {

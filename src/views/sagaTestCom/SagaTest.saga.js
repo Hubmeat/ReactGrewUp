@@ -20,7 +20,6 @@ export function* sagaTestFn() {
     while(true){
         let status = yield take(SageTestActions.SAGE_TEST_START);
         yield delay(3000);
-        yield call(testWay, status);
-        
+        yield call(testWay, status);   
     }
 }

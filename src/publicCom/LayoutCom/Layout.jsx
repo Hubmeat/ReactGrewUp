@@ -39,7 +39,6 @@ class LayoutCom extends Component {
                                 RouteCreator(this.props.routes)
                             }
                             {console.log('content 路由', RouteCreator(this.props.routes))}
-                            <Route path="/" exact render={()=><Redirect to="/login"/>}/>
                         </Content>
                     </Layout>
                 </Content>

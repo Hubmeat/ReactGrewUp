@@ -6,6 +6,7 @@
     ],
     "plugins": [
         "react-hot-loader/babel",
+        "dynamic-import-webpack",
         ["import", { 
                 "libraryName": "antd", 
                 "style": "css" 

@@ -16,26 +16,26 @@ class MenuCom extends Component {
                     icon: "user",
                     children: [
                         {
-                            url: '/content',
+                            url: '/',
                             name: '首页',
                             key: 'first',
                             children: []
                         }, {
-                            url: '/content/page',
+                            url: '/page',
                             key: 'page',
                             name: 'page页',
                             children: []   
                         }, {
-                            url: '/content/home',
+                            url: '/home',
                             name: 'home',
                             children: []   
                         }, {
-                            url: '/content/saga',
+                            url: '/saga',
                             key: 'saga',
                             name: 'sagaTest',
                             children: []  
                         }, {
-                            url: '/content/chart',
+                            url: '/chart',
                             key: 'chart',
                             name: '图表',
                             children: []
